@@ -25,9 +25,18 @@ public class QRCodeGenerator {
 		MatrixToImageWriter.writeToPath(matrix,"PNG", path);
 		return "QR Code is generated successfully";
 	}
+	public String readQRCode(String qrcodePath) throws Exception{
+		BufferedImage image = ImageIO.read(new File(qrcodePath));
+		LuminanceSource lsource = new BufferedImageLuminanceSource(image);
+		BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(lsource));
+		Result result = new MultiFormatReader().decode(bitmap);
+		
+		return result.getText();
+	}
 
 	public static void main(String[] args) throws Exception {
 		QRCodeGenerator generator = new QRCodeGenerator();
 		System.out.println(generator.writeQRCode(new PaytmRequestBody("anil","8121915678", "personal", "34567890234")));
+		System.out.println(generator.readQRCode(QR_CODE_PATH + "anil .QR_CODE.PNG"));
 	}
 }
