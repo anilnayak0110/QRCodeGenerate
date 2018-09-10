@@ -13,7 +13,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
  *
  */
 public class QRCodeGenerator {
-	private String QR_CODE_PATH = "C:\\Users\\LKU\\Documents\\QR_CODE_SERVER\\";
+	private static String QR_CODE_PATH = "C:\\Users\\LKU\\Documents\\QR_CODE_SERVER\\";
 	public String writeQRCode(PaytmRequestBody paytmRequestBody) throws Exception {
 		String QrCode = QR_CODE_PATH+paytmRequestBody.getUsername()+" .QR_CODE.png";
 		QRCodeWriter writer = new QRCodeWriter();
